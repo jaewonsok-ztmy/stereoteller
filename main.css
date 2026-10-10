@@ -163,11 +163,10 @@ body {
 ========================= */
 
 .portfolio {
-    left: 0;
-    top: calc(50% - 20px);
+   right: 0;
 
     transform:
-        translate(-30px, -50%);
+        translate(30px, -50%);
 }
 
 
@@ -177,7 +176,7 @@ body {
 
 .shop {
     left: 0;
-    top: calc(50% + 20px);
+  
 
     transform:
         translate(-30px, -50%);
@@ -185,16 +184,7 @@ body {
 
 
 
-/* =========================
-   Music
-========================= */
 
-.music {
-    right: 0;
-
-    transform:
-        translate(30px, -50%);
-}
 
 
 /* =========================
@@ -221,14 +211,6 @@ body {
 }
 
 
-.main-container:hover .music {
-    opacity: 1;
-
-    pointer-events: auto;
-
-    transform:
-        translate(210px, -50%);
-}
 
 
 
@@ -276,9 +258,5 @@ body {
             translate(-150px, -50%);
     }
 
-    .main-container:hover .music {
-        transform:
-            translate(150px, -50%);
-    }
-
+ 
 }
