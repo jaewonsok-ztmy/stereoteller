@@ -1,274 +1,218 @@
-/* =========================
-   기본 설정
-========================= */
+
+:root {
+    --lime: #c3cd5d;
+    --menu-size: 1.2vw;
+}
+
+/* 기본 설정 */
 
 * {
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 html,
 body {
-    width: 100%;
-    height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-    overflow: hidden;
-
-    background-color: #f3f1eb;
-    color: #111;
-
-    font-family: Arial, Helvetica, sans-serif;
+    background: #050705;
+    color: var(--lime);
+    font-family: 'Courier New', Courier, monospace;
 }
 
-
-/* =========================
-   전체 화면
-========================= */
-
-.main-page {
-    width: 100vw;
-    height: 100vh;
-    height: 100dvh;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
+a {
+    color: inherit;
+    text-decoration: none;
 }
 
-
-/* =========================
-   이미지 + 메뉴 전체 그룹
-========================= */
-
-.main-container {
-    position: relative;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
+button,
+input {
+    font: inherit;
 }
 
-
-/* =========================
-   보이지 않는 Hover 영역
-
-   이미지에서 메뉴까지 마우스를
-   이동해도 메뉴가 닫히지 않게 함
-========================= */
-
-.main-container::before {
-    content: "";
-
-    position: absolute;
-
-    left: -250px;
-    right: -250px;
-
-    top: 0;
-    bottom: 0;
-
-    z-index: 1;
-}
-
-
-/* =========================
-   중앙 이미지
-   원본: 1593 x 1783
-========================= */
-
-.image-frame {
-    position: relative;
-
-    width: min(55vw, 550px, 80vh);
-
-    aspect-ratio: 1593 / 1783;
-
-    z-index: 5;
-
+button {
     cursor: pointer;
 }
 
+/* 이미지 */
 
-/* =========================
-   실제 이미지
-========================= */
-
-.image-frame img {
-    display: block;
-
+.hero,
+.photo-section {
+    position: relative;
     width: 100%;
-    height: 100%;
-
-    object-fit: contain;
-
-    user-select: none;
-
-    -webkit-user-drag: none;
+    line-height: 0;
 }
 
+.editorial-image {
+    display: block;
+    width: 100%;
+    height: auto;
+}
 
-/* =========================
-   메뉴 공통
-========================= */
+/* 상단 헤더 */
 
-.menu-item {
+.site-header {
     position: absolute;
-
-    top: 50%;
+    top: 0;
+    left: 0;
+    z-index: 2;
 
     display: flex;
-    align-items: center;
+    align-items: flex-start;
+    gap: 3vw;
 
-    gap: 12px;
-
-    color: #111;
-
-    text-decoration: none;
-
-    opacity: 0;
-
-    pointer-events: none;
-
-    z-index: 20;
-
-    transition:
-        transform 0.65s cubic-bezier(0.22, 1, 0.36, 1),
-        opacity 0.35s ease;
+    width: 100%;
+    padding: 2.2% 2.5%;
+    line-height: 1.2;
 }
 
+/* 로고 */
 
-/* =========================
-   메뉴 글씨
-========================= */
+.brand {
+    display: block;
+    flex: 0 0 9.45vw;
+}
 
-.menu-item span {
-    writing-mode: horizontal-tb;
+.brand img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
 
-    white-space: nowrap;
+/* 왼쪽 메뉴 */
 
-    font-size: 30px;
+.primary-nav {
+    display: flex;
+    align-items: flex-start;
+    gap: 4vw;
+    padding-top: 0.15em;
+}
+
+/* 오른쪽 메뉴 */
+
+.utility-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2vw;
+
+    margin-left: auto;
+}
+
+/* 모든 메뉴 글씨 통일 */
+
+.site-header .primary-nav a,
+.site-header .utility-nav a,
+.site-header .utility-nav button {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: var(--menu-size);
     font-weight: 400;
-
-    letter-spacing: 0.5px;
-
-    line-height: 1;
-
-    transition: opacity 0.2s ease;
+    line-height: 1.2;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+    text-shadow: 0 1px 2px #0005;
 }
 
+/* 검색 버튼 */
 
-/* =========================
-   Portfolio - 오른쪽
-========================= */
-
-.portfolio {
-    left: 100%;
-    right: auto;
-
-    transform: translate(-30px, -50%);
+.utility-nav button {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
 }
 
+/* 메뉴 마우스 효과 */
 
-/* =========================
-   Shop - 왼쪽
-========================= */
-
-.shop {
-    right: 100%;
-    left: auto;
-
-    transform: translate(30px, -50%);
+.primary-nav a:hover,
+.utility-nav a:hover,
+.utility-nav button:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
 }
 
+/* 검색창 */
 
-/* =========================
-   메뉴 등장
+.search-panel {
+    position: absolute;
+    z-index: 4;
 
-   main-container 전체 Hover
-========================= */
+    top: 23%;
+    right: 2.5%;
+    width: min(450px, 90%);
 
-.main-container:hover .portfolio {
-    opacity: 1;
+    padding: 20px;
+    background: #10180eea;
+    border: 1px solid var(--lime);
 
-    pointer-events: auto;
-
-    transform: translate(40px, -50%);
+    line-height: 1.4;
+    font-size: 16px;
 }
 
-.main-container:hover .shop {
-    opacity: 1;
-
-    pointer-events: auto;
-
-    transform: translate(-40px, -50%);
+.search-panel[hidden] {
+    display: none;
 }
 
-
-/* =========================
-   글씨 Hover
-========================= */
-
-.menu-item:hover span {
-    opacity: 0.45;
+.search-line {
+    display: flex;
+    gap: 12px;
+    margin-top: 12px;
 }
 
+.search-line input {
+    flex: 1;
+    min-width: 0;
 
-/* =========================
-   작은 화면 대응
-========================= */
+    padding: 7px;
+    background: transparent;
+    color: var(--lime);
 
-@media (max-width: 900px) {
-
-    .image-frame {
-        width: min(60vw, 550px, 80vh);
-    }
-
-    .main-container::before {
-        left: -180px;
-        right: -180px;
-    }
-
-    .menu-item span {
-        font-size: 22px;
-    }
-
-    .main-container:hover .portfolio {
-        transform: translate(20px, -50%);
-    }
-
-    .main-container:hover .shop {
-        transform: translate(-20px, -50%);
-    }
+    border: 0;
+    border-bottom: 1px solid var(--lime);
 }
 
+.search-line button {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--lime);
+}
 
-/* =========================
-   모바일 화면 대응
-========================= */
+/* 모바일 */
 
 @media (max-width: 600px) {
 
-    .image-frame {
-        width: 55vw;
+    :root {
+        --menu-size: 2.65vw;
     }
 
-    .main-container::before {
-        left: -100px;
-        right: -100px;
+    .site-header {
+        padding: 3%;
+        gap: 3vw;
     }
 
-    .menu-item span {
-        font-size: 14px;
+    .brand {
+        flex-basis: 13.3vw;
     }
 
-    .main-container:hover .portfolio {
-        transform: translate(8px, -50%);
+    .primary-nav {
+        gap: 3vw;
     }
 
-    .main-container:hover .shop {
-        transform: translate(-8px, -50%);
+    .utility-nav {
+        gap: 5vw;
+    }
+
+    .search-panel {
+        top: 28%;
+        right: 3%;
+        padding: 12px;
+        font-size: 13px;
     }
 }
